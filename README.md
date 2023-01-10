@@ -13,7 +13,6 @@ The API has a single endpoint, `/{username}/contributions`, which takes the foll
 
 ## Requirements
 * Python 3.8 or later
-* FastAPI
 
 ## Installation
 
