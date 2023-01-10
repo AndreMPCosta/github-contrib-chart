@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
   web:
+    container_name: github-chart
     build: ./
     command: pipenv run app
     restart: always
