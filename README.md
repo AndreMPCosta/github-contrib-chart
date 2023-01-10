@@ -26,8 +26,8 @@ cd github-contrib-chart
 
 2. Install the required dependencies:
 ```
-    pip install pipenv
-    pipenv install
+pip install pipenv
+pipenv install
 ```
 
 3. Create a .env file containing your allowed origins and hosts, and API port, separated by a comma
