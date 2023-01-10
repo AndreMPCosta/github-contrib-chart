@@ -73,8 +73,12 @@ The response it will be an object containing the following keys:
 
 If you want only to embbed it directly on your website, you can use, for example:
 ```html
-<img src='http://localhost:10000/andrempcosta/contributions?get_image=true' alt='github-chart'/>
+<img src='https://github-chart.andrecosta.eu/{username}/contributions?get_image=true' alt='github-chart'/>
 ```
+
+It's running now on: ```https://github-chart.andrecosta.eu/{username}/contributions```
+
+You can see it live on [https://andrecosta.eu](https://andrecosta.eu)
 
 ## Contribution
 This is an open-source project, feel free to open an issue or make a pull request if you want to contribute.
