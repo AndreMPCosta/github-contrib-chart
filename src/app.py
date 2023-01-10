@@ -128,7 +128,7 @@ if __name__ == "__main__":
         "src.app:app",
         host="0.0.0.0",
         workers=4,
-        port=getenv('port', 10000),
+        port=int(getenv('PORT', 10000)),
         log_level="info",
         reload=True,
     )
