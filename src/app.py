@@ -88,10 +88,13 @@ async def get_svg(
                         'html.parser')
                 )
             texts = svg.select('text')
-            for text in texts:
+            for index, text in enumerate(texts):
                 if text.get('dy') in ['8', '32', '57', '81']:
                     text['style'] = 'display: none'
                 else:
+                    if index > 0 and texts[index].get('x'):
+                        if int(texts[index].get('x')) - int(texts[index - 1].get('x')) < 27:
+                            texts[index - 1]['style'] = 'display: none'
                     text['fill'] = text_color
                     text['shape-rendering'] = 'crispedges'
                     if get_image:
