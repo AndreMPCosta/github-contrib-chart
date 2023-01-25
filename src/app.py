@@ -64,7 +64,7 @@ async def get_svg(
             raw_response = await response.text()
 
             soup = BeautifulSoup(raw_response, features='html.parser')
-            svg = soup.find('svg')
+            svg = soup.select_one('.js-calendar-graph-svg')
             width = svg.get('width')
             height = svg.get('height')
             contributions = soup.find('h2')
@@ -77,7 +77,7 @@ async def get_svg(
             if not get_image:
                 svg.append(
                     BeautifulSoup(
-                        '''<div id="tooltip" display="none" 
+                        '''<div id="tooltip" 
                         style="position: absolute; 
                         display: none; 
                         background-color: #6e7680; 
