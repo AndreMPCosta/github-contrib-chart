@@ -75,19 +75,6 @@ async def get_svg(
             del svg['height']
             svg['width'] = '100%'
 
-            if not get_image:
-                svg.append(
-                    BeautifulSoup(
-                        '''<div id="tooltip" 
-                        style="position: absolute; 
-                        display: none; 
-                        background-color: #6e7680; 
-                        border-radius: .4em; 
-                        font-size: .85em;
-                        padding: 8px"
-                        ></div>''',
-                        'html.parser')
-                )
             texts = svg.select('text')
             for index, text in enumerate(texts):
                 if text.get('dy') in ['8', '32', '57', '81']:
