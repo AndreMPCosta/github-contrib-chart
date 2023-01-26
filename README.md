@@ -10,6 +10,7 @@ The API has a single endpoint, `/{username}/contributions`, which takes the foll
 - `level_3`: The color of the squares representing days with many contributions (default: '#26a641').
 - `level_4`: The color of the squares representing days with a lot of contributions (default: '#39d353').
 - `get_image`: A boolean value that indicates whether the API should return the chart as an image or as HTML (default: False).
+- `number_contributions_only`: A boolean value that indicates if the API should return only the total number of contributions.
 
 ## Requirements
 * Python 3.8 or later

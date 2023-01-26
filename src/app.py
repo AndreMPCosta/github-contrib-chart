@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.responses import Response
 from uvicorn import run as uvicorn_run
 
@@ -23,9 +22,6 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
-app.add_middleware(
-    TrustedHostMiddleware, allowed_hosts=hosts
-)
 
 
 @app.get("/{username}/contributions")
@@ -37,7 +33,8 @@ async def get_svg(
         level_2: str = '#006d32',
         level_3: str = '#26a641',
         level_4: str = '#39d353',
-        get_image: bool = False
+        get_image: bool = False,
+        number_contributions_only=False
 ):
     """
     Args:
@@ -49,6 +46,7 @@ async def get_svg(
         level_3: fourth color of the gradient
         level_4: fith color of the gradient
         get_image: if true returns the .svg image
+        number_contributions_only: only get the total number of contributions
     Returns:
 
     """
@@ -68,6 +66,9 @@ async def get_svg(
             width = svg.get('width')
             height = svg.get('height')
             contributions = soup.find('h2')
+
+            if number_contributions_only:
+                return {'contributions': contributions.get_text()}
 
             svg['style'] = 'overflow: scroll'
             svg['xmlns'] = 'http://www.w3.org/2000/svg'
@@ -105,7 +106,7 @@ async def get_svg(
             for month in months:
                 if get_image:
                     month['style'] = 'font-family: "Roboto", "-apple-system", ' \
-                                    '"Helvetica Neue", Helvetica, Arial, sans-serif; ' \
+                                     '"Helvetica Neue", Helvetica, Arial, sans-serif; ' \
                                      'font-size: 14px; line-height: 1.5'
                 week = month.select('rect')
                 for day in week:
